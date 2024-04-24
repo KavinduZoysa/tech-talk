@@ -1,0 +1,21 @@
+HDR+119+2023:12:16'
+
+CAT+fruits+003'
+LOC+2024:3:6+Colombo3:main street'
+
+ITM+apple+100C' 
+QUAN+1000:1500'
+PRC+21,00:21,50'
+
+ITM+orange+100C' 
+QUAN+2000:2500'
+PRC+20,00:20,50'
+
+CAT+cake+003'
+LOC+2024:4:6+Colombo2:2nd street'
+ITM+chocalate+100A' 
+QUAN+100:120'
+PRC+30,00:32,50'
+ITM+butter+100A' 
+QUAN+50:65'
+PRC+28,00:29,50'

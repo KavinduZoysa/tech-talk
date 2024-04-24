@@ -1,0 +1,235 @@
+{
+    "name": "PURCHASE_ORDER",
+    "ignoreSegments": [],
+    "delimiters": {
+        "segment": "'",
+        "field": "+",
+        "component": ":",
+        "repetition": "*",
+        "decimalSeparator": ","
+    },
+    "segments": [
+        {
+            "ref": "HDR",
+            "tag": "MessageHeader",
+            "minOccurances": 1,
+            "maxOccurances": 1
+        },
+        {
+            "tag": "Items",
+            "minOccurances": 1,
+            "maxOccurances": 99,
+            "segments": [
+                {
+                    "ref": "CAT", 
+                    "minOccurances": 1,
+                    "maxOccurances": 1
+                },
+                {
+                    "ref": "LOC", 
+                    "minOccurances": 1,
+                    "maxOccurances": 1
+                },
+                {
+                    "tag": "Price",
+                    "minOccurances": 1,
+                    "maxOccurances": 99,
+                    "segments": [
+                        {
+                            "ref": "ITM",
+                            "minOccurances": 1,
+                            "maxOccurances": 1
+                        },
+                        {
+                            "ref": "QUAN", 
+                            "minOccurances": 1,
+                            "maxOccurances": 1
+                        },
+                        {
+                            "ref": "PRC", 
+                            "minOccurances": 1,
+                            "maxOccurances": 1
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "segmentDefinitions": {
+        "HDR": {
+            "code": "HDR",
+            "tag": "message_header",
+            "fields": [
+                {
+                    "tag": "code",
+                    "required": true
+                },
+                {
+                    "tag": "message_id",
+                    "dataType": "string",
+                    "required": true
+                },
+                {
+                    "tag": "date",
+                    "dataType": "composite",
+                    "required": true,
+                    "components": [
+                        {
+                            "tag": "year",
+                            "required": true,
+                            "dataType": "string"
+                        },
+                        {
+                            "tag": "month",
+                            "required": true,
+                            "dataType": "string"
+                        },
+                        {
+                            "tag": "date",
+                            "required": true,
+                            "dataType": "string"
+                        }
+                    ]
+                }
+            ]
+        },
+        "CAT": {
+            "code": "CAT",
+            "tag": "catagory",
+            "fields": [
+                {
+                    "tag": "code",
+                    "required": true
+                },
+                {
+                    "tag": "name"
+                },
+                {
+                    "tag": "catagory_id",
+                    "required": true
+                }
+            ]
+        },
+        "LOC": {
+            "code": "LOC",
+            "tag": "delivery",
+            "fields": [
+                {
+                    "tag": "code",
+                    "required": true
+                },
+                {
+                    "tag": "date",
+                    "dataType": "composite",
+                    "required": true,
+                    "components": [
+                        {
+                            "tag": "year",
+                            "required": true,
+                            "dataType": "string"
+                        },
+                        {
+                            "tag": "month",
+                            "required": true,
+                            "dataType": "string"
+                        },
+                        {
+                            "tag": "date",
+                            "required": false,
+                            "dataType": "string"
+                        }
+                    ]
+                },
+                {
+                    "tag": "location",
+                    "dataType": "composite",
+                    "required": true,
+                    "components": [
+                        {
+                            "tag": "city",
+                            "required": true,
+                            "dataType": "string"
+                        },
+                        {
+                            "tag": "street",
+                            "required": false,
+                            "dataType": "string"
+                        }
+                    ]
+                }
+            ]
+        },
+        "ITM": {
+            "code": "ITM",
+            "tag": "item",
+            "fields": [
+                {
+                    "tag": "code",
+                    "required": true
+                },
+                {
+                    "tag": "item_name",
+                    "required": false
+                },
+                {
+                    "tag": "item_id",
+                    "required": true
+                }
+            ]
+        },
+        "QUAN": {
+            "code": "QUAN",
+            "tag": "quantity",
+            "fields": [
+                {
+                    "tag": "code",
+                    "required": true
+                },
+                {
+                    "tag": "quantity_limit",
+                    "dataType": "composite",
+                    "required": true,
+                    "components": [
+                        {
+                            "tag": "min",
+                            "required": false,
+                            "dataType": "int"
+                        },
+                        {
+                            "tag": "max",
+                            "required": true,
+                            "dataType": "int"
+                        }
+                    ]
+                }
+            ]
+        },
+        "PRC": {
+            "code": "PRC",
+            "tag": "price",
+            "fields": [
+                {
+                    "tag": "code",
+                    "required": true
+                },
+                {
+                    "tag": "price_limit",
+                    "dataType": "composite",
+                    "required": true,
+                    "components": [
+                        {
+                            "tag": "min",
+                            "required": false,
+                            "dataType": "float"
+                        },
+                        {
+                            "tag": "max",
+                            "required": true,
+                            "dataType": "float"
+                        }
+                    ]
+                }
+            ]
+        }
+    }    
+}
